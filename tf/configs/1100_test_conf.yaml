@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-name: 'sl-64x6'                       # ideally no spaces
+name: '1100-test-64x6'                 # ideally no spaces
 gpu: 0                                 # gpu id to process on
 
 dataset:
