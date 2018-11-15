@@ -45,7 +45,7 @@ def get_latest_chunks(path, num_chunks):
     print("sorting {} chunks...".format(len(chunks)), end='')
     chunks.sort(key=os.path.getmtime, reverse=True)
     print("[done]")
-    chunks = chunks[:num_chunks]
+    chunks = chunks#[:num_chunks]
     print("{} - {}".format(os.path.basename(chunks[-1]), os.path.basename(chunks[0])))
     random.shuffle(chunks)
     return chunks
