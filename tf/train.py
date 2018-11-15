@@ -38,6 +38,8 @@ def get_chunks(data_prefix):
 def get_latest_chunks(path, num_chunks):
     chunks = list(glob.glob(path))
 
+    print("{} chunks found: {}".format(len(chunks), chunks[:5]))
+
     if len(chunks) < num_chunks:
         print("Not enough chunks {}".format(len(chunks)))
         sys.exit(1)

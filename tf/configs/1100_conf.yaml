@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-name: '1100-test-64x6'                 # ideally no spaces
+name: '1100-64x6'                 # ideally no spaces
 gpu: 0                                 # gpu id to process on
 
 dataset:
@@ -10,7 +10,7 @@ dataset:
   #input_train: '/path/to/chunks/*/draw/' # supports glob
   #input_test: '/path/to/chunks/*/draw/'  # supports glob
   # For a one-shot run with all data in one directory.
-  input: '/datadrive/processed_games/1100/supervise-packed/*.gz'
+  input: '/datadrive/processed_games/1100/supervise-*/*.gz'
 
 training:
     batch_size: 2048                   # training batch
