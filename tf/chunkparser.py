@@ -79,7 +79,8 @@ class ChunkParser:
         self.shuffle_size = shuffle_size
         # Start worker processes, leave 2 for TensorFlow
         if workers is None:
-            workers = max(1, mp.cpu_count() - 2)
+            #At high values they end up doing nothing
+            workers = 5#max(1, mp.cpu_count() - 2)
 
         print("Using {} worker processes.".format(workers))
 
@@ -342,7 +343,7 @@ class ChunkParserTest(unittest.TestCase):
         parser = ChunkParser(ChunkDataSrc(records), shuffle_size=1, workers=1, batch_size=batch_size)
         batchgen = parser.parse()
         data = next(batchgen)
-        
+
         batch = ( np.reshape(np.frombuffer(data[0], dtype=np.float32), (batch_size, 112, 64)),
                   np.reshape(np.frombuffer(data[1], dtype=np.int32), (batch_size, 1858)),
                   np.reshape(np.frombuffer(data[2], dtype=np.float32), (batch_size, 1)) )
@@ -355,7 +356,7 @@ class ChunkParserTest(unittest.TestCase):
             self.assertTrue((data[1] == fltplanes).all())
             self.assertTrue((data[2] == truth[2]).all())
             self.assertEqual(data[3][0], truth[3])
-            
+
         parser.shutdown()
 
 
