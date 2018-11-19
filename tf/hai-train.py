@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
         conf['name'] = f"{n.elo}-64x6"
         conf['gpu'] = n.gpu
-        conf['input'] = f'/datadrive/processed_games/{n.elo}/supervise-*/*.gz'
+        conf['dataset']['input'] = f'/datadrive/processed_games/{n.elo}/supervise-*/*.gz'
 
 
         fp.write(yaml.dump(conf))
