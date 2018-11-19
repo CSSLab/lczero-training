@@ -52,8 +52,9 @@ if __name__ == "__main__":
         argparser.add_argument('--output', type=str,
             help='file to store weights in', default = f"full_weights/{n.elo}-64x6.txt")
 
-        #print(argparser.parse_args())
 
+        c = argparser.parse_args()
+        print(c)
         mp.set_start_method('spawn')
         train.main(argparser.parse_args())
         mp.freeze_support()
