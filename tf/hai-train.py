@@ -40,21 +40,21 @@ if __name__ == "__main__":
 
         print(f"Doing run with {n.elo} on GPU: {n.gpu}")
 
-        argparser = argparse.ArgumentParser(
-            description= 'Dummy args')
-        argparser.add_argument('elo', type=int,
-            help='ELO range to train against')
+    argparser = argparse.ArgumentParser(
+        description= 'Dummy args')
+    argparser.add_argument('elo', type=int,
+        help='ELO range to train against')
 
-        argparser.add_argument('gpu', type=int,
-            help='gpu to use 0 or 1')
-        argparser.add_argument('--cfg', type=argparse.FileType('r'),
-            help='yaml configuration with training parameters', default = fp.name)
-        argparser.add_argument('--output', type=str,
-            help='file to store weights in', default = f"full_weights/{n.elo}-64x6.txt")
+    argparser.add_argument('gpu', type=int,
+        help='gpu to use 0 or 1')
+    argparser.add_argument('--cfg', type=argparse.FileType('r'),
+        help='yaml configuration with training parameters', default = fp.name)
+    argparser.add_argument('--output', type=str,
+        help='file to store weights in', default = f"full_weights/{n.elo}-64x6.txt")
 
 
-        c = argparser.parse_args()
-        print(c)
-        mp.set_start_method('spawn')
-        train.main(c)
-        mp.freeze_support()
+    c = argparser.parse_args()
+    print(c)
+    mp.set_start_method('spawn')
+    train.main(c)
+    mp.freeze_support()
