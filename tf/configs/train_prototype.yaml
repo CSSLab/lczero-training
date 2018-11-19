@@ -13,7 +13,7 @@ dataset:
   #input: '/datadrive/processed_games/1100/supervise-*/*.gz'
 
 training:
-    batch_size: 16384                   # training batch
+    batch_size: 8192                   # training batch
     test_steps: 2000                   # eval test set values after this many steps
     train_avg_report_steps: 200        # training reports its average values after this many steps.
     total_steps: 140000                # terminate after these steps
