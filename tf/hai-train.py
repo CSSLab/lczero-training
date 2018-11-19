@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     os.makedirs('configs/temp', exist_ok = True)
 
-    with tempfile.NamedTemporaryFile(dir='configs/temp', mode = 'wt', delete=Fasle) as fp:
+    with tempfile.NamedTemporaryFile(dir='configs/temp', mode = 'wt', delete=False) as fp:
 
         print(fp.name)
 
