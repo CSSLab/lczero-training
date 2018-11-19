@@ -56,5 +56,5 @@ if __name__ == "__main__":
         c = argparser.parse_args()
         print(c)
         mp.set_start_method('spawn')
-        train.main(argparser.parse_args())
+        train.main(c)
         mp.freeze_support()
