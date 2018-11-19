@@ -10,7 +10,9 @@ if __name__ == "__main__":
 
     os.makedirs('full_weights', exist_ok = True)
 
-    with tempfile.NamedTemporaryFile(dir='.', mode = 'wt', delete=True) as fp:
+    os.makedirs('configs/temp', exist_ok = True)
+
+    with tempfile.NamedTemporaryFile(dir='configs/temp', mode = 'wt', delete=Fasle) as fp:
 
         print(fp.name)
 
