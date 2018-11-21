@@ -25,6 +25,10 @@ import bisect
 
 from net import Net
 
+import pytz
+import datetime
+tz = pytz.timezone('Canada/Eastern')
+
 def weight_variable(shape, name=None):
     """Xavier initialization"""
     if len(shape) == 4:
@@ -34,7 +38,7 @@ def weight_variable(shape, name=None):
     else:
         fan_in = shape[0]
         fan_out = shape[1]
-    # truncated normal has lower stddev than a regular normal distribution, so need to correct for that 
+    # truncated normal has lower stddev than a regular normal distribution, so need to correct for that
     trunc_correction = np.sqrt(1.3)
     stddev = trunc_correction * np.sqrt(2.0 / (fan_in + fan_out))
     initial = tf.truncated_normal(shape, stddev=stddev)
@@ -318,8 +322,11 @@ class TFProcess:
             avg_policy_loss = np.mean(self.avg_policy_loss or [0])
             avg_mse_loss = np.mean(self.avg_mse_loss or [0])
             avg_reg_term = np.mean(self.avg_reg_term or [0])
-            print("step {}, lr={:g} policy={:g} mse={:g} reg={:g} total={:g} ({:g} pos/s)".format(
-                steps, self.lr, avg_policy_loss, avg_mse_loss, avg_reg_term,
+
+
+            timeGenerated = datetime.datetime.now(tz)
+            print("{} step {}, lr={:g} policy={:g} mse={:g} reg={:g} total={:g} ({:g} pos/s)".format(
+                timeGenerated.strftime("%Y-%m-%d %H:%M:%S"), steps, self.lr, avg_policy_loss, avg_mse_loss, avg_reg_term,
                 # Scale mse_loss back to the original to reflect the actual
                 # value being optimized.
                 # If you changed the factor in the loss formula above, you need
@@ -361,7 +368,7 @@ class TFProcess:
             leela_path = path + "-" + str(steps)
             swa_path = path + "-swa-" + str(steps)
             self.net.pb.training_params.training_steps = steps
-            self.save_leelaz_weights(leela_path) 
+            self.save_leelaz_weights(leela_path)
             print("Weights saved in file: {}".format(leela_path))
             if self.swa_enabled:
                 self.save_swa_weights(swa_path)
