@@ -20,8 +20,8 @@ if __name__ == "__main__":
             description= 'Tensorflow pipeline for training Leela Chess modified for haibrid server training.'
         )
 
-        argparser.add_argument('elo', type=int,
-            help='ELO range to train against')
+        argparser.add_argument('target', type=str,
+            help='target path train against')
 
         argparser.add_argument('gpu', type=int,
             help='gpu to use 0 or 1')
@@ -31,9 +31,9 @@ if __name__ == "__main__":
         with open('configs/train_prototype.yaml') as f:
             conf = yaml.safe_load(f.read())
 
-        conf['name'] = f"{n.elo}-64x6"
+        conf['name'] = f"{os.path.basename(n.target)}-64x6"
         conf['gpu'] = n.gpu
-        conf['dataset']['input'] = f'/datadrive/processed_games/{n.elo}/supervise-*/*.gz'
+        conf['dataset']['input'] = os.path.join(n.target, 'supervise-*/*.gz')
 
 
         fp.write(yaml.dump(conf))
@@ -42,8 +42,8 @@ if __name__ == "__main__":
 
     argparser = argparse.ArgumentParser(
         description= 'Dummy args')
-    argparser.add_argument('elo', type=int,
-        help='ELO range to train against')
+    argparser.add_argument('target', type=str,
+        help='target path train against')
 
     argparser.add_argument('gpu', type=int,
         help='gpu to use 0 or 1')
