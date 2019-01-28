@@ -29,7 +29,7 @@ training:
         - 130000
     policy_loss_weight: 1.0            # weight of policy loss
     value_loss_weight: 1.0             # weight of value loss
-    path: 'networks_2048'    # network storage dir
+    path: 'networks_single'    # network storage dir
 
 model:
   filters: 64
