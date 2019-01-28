@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
         name = os.path.basename(n.target[:-1]) if n.target.endswith('/') else os.path.basename(n.target)
 
-        conf['name'] = f"{name}-64x6"
+        conf['name'] = f"{name}-2048-64x6"
         conf['gpu'] = n.gpu
         conf['dataset']['input'] = os.path.join(n.target, 'supervise-*/*.gz')
 
