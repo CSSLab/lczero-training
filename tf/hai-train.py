@@ -28,10 +28,10 @@ if __name__ == "__main__":
         argparser.add_argument('gpu', type=int,
             help='gpu to use 0 or 1')
 
-        argparser.add_argument('policyWeight', type=float,
+        argparser.add_argument('--policyWeight', type=float,
             help='weight on the policy head', default=1)
 
-        argparser.add_argument('valueWeight', type=float,
+        argparser.add_argument('--valueWeight', type=float,
             help='weight on the value head', default=1)
 
         n = argparser.parse_args()
