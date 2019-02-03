@@ -62,6 +62,11 @@ if __name__ == "__main__":
         help='yaml configuration with training parameters', default = fp.name)
     argparser.add_argument('--output', type=str,
         help='file to store weights in', default = f"full_weights/{name}-64x6.txt")
+    argparser.add_argument('--policyWeight', type=float,
+        help='weight on the policy head', default=1)
+
+    argparser.add_argument('--valueWeight', type=float,
+        help='weight on the value head', default=1)
 
 
     c = argparser.parse_args()
