@@ -24,8 +24,15 @@ if __name__ == "__main__":
         argparser.add_argument('target', type=str,
             help='target path train against')
 
+
         argparser.add_argument('gpu', type=int,
             help='gpu to use 0 or 1')
+
+        argparser.add_argument('policyWeight', type=float,
+            help='weight on the policy head', default=1)
+
+        argparser.add_argument('valueWeight', type=float,
+            help='weight on the value head', default=1)
 
         n = argparser.parse_args()
 
@@ -34,10 +41,11 @@ if __name__ == "__main__":
 
         name = os.path.basename(n.target[:-1]) if n.target.endswith('/') else os.path.basename(n.target)
 
-        conf['name'] = f"{name}-2048-64x6"
+        conf['name'] = f"{name}-p{n.policyWeight:.2f}-v{n.valueWeight:.2f}-2048-64x6"
         conf['gpu'] = n.gpu
         conf['dataset']['input'] = os.path.join(n.target, 'supervise-*/*.gz')
-
+        conf['training']['policy_loss_weight'] = n.policyWeight
+        conf['training']['value_loss_weight'] = n.valueWeight
 
         fp.write(yaml.dump(conf))
 

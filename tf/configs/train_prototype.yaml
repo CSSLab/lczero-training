@@ -27,8 +27,8 @@ training:
     lr_boundaries:                     # list of boundaries
         - 100000
         - 130000
-    policy_loss_weight: 1.0            # weight of policy loss
-    value_loss_weight: 1.0             # weight of value loss
+    #policy_loss_weight: 1.0            # weight of policy loss
+    #value_loss_weight: 1.0             # weight of value loss
     path: 'networks_single'    # network storage dir
 
 model:
